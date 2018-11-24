@@ -76,12 +76,12 @@ void setup() {
 
 void loop() {
   static uint8_t counter = 0;      //this variable will be changed by encoder input
-  
+
   // put your main code here, to run repeatedly:
   ucData = 0;
-  
+
   debouncer.update();
-  
+
   tNow = millis();
 
   int value = debouncer.read();
@@ -121,7 +121,7 @@ void loop() {
     // Cal the down duration, long press ( >= 1.5s) or short press (< 1s), ignore other( < 1.5s and >= 1s)
     TXLED0;
     button_down = false;
-    
+
     if (tNow > button_down_time)
     {
       tDuration = tNow - button_down_time;
@@ -131,7 +131,7 @@ void loop() {
       tDuration = UINT32_MAX - button_down_time + tNow;
     }
 
-    // 
+    //
     if (tDuration < 1000)
     {
       // Click
@@ -156,7 +156,7 @@ void loop() {
   if (rotaryA.rose())
   {
     ucData |= ROLL_MASK;
-    
+
     if (digitalRead(ENC_B))
     {
       // FWD
@@ -170,7 +170,7 @@ void loop() {
   }
 
   plugin = digitalRead(PLUG_IN);
-  
+
   // Check backup RO water IR sensor
   adValue = analogRead(IR_SENSOR);
   if (bHaveWater)
@@ -219,4 +219,5 @@ void loop() {
   }
 }
 
+// Test in gitpod
 
